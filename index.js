@@ -28,6 +28,13 @@ async function run (){
             res.send(result);
         })
 
+        app.get('/services', async (req, res) => {
+            const query = {}
+            const cursor = serviceCollection.find(query).sort({ts: -1});
+            const services = await cursor.limit(3).toArray();
+            res.send(services);
+        });
+
       
 
     }
