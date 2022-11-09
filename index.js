@@ -14,6 +14,36 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 
 
+async function run (){
+
+    try{
+        const serviceCollection = client.db('serviceReview').collection('services');
+        const reviewCollection = client.db('serviceReview').collection('reviews');
+     
+
+        /////////////////
+        app.post('/addservices' , async (req, res)=>{
+            const services = req.body ;
+             const result = await serviceCollection.insertOne(services);
+            res.send(result);
+        })
+
+      
+
+    }
+    finally{
+
+
+    }
+
+}
+
+run().catch(err => console.log(err));
+
+
+
+
+
 
 app.get('/' , (req , res)=>{
     res.send("service review server is running")
